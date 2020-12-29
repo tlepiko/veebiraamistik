@@ -26,7 +26,7 @@ Syntax highlighted code block
 [Link](https://github.com/tlepiko/veebiraamistik/blob/master/test5.html) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+For more details see [GitHub Flavored Markdown](https://github.com/tlepiko/veebiraamistik/blob/master/test5.html).
 
 ### Jekyll Themes
 
