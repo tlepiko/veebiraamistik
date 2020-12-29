@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.min.js"></script>
+
+    <link rel="stylesheet" href="test3.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="prompt" hidden>
+        <div>Sisesta nimi</div>
+        <input onkeyup="onPromptInputKeyup(event)" id="promptInput" type="text">
+        <div>
+            <button onclick="onPromptButtonClick(true)" id="promptButton">Ok</button>
+        </div>
+    </div>
+        <canvas id="canvas">
+        </canvas>
+        <script src="test5.js"></script>
+</body>
+
+</html>
