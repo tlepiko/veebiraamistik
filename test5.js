@@ -142,10 +142,18 @@ function update() {
             continue;
         } else {
             var dir2 = colCheck(player, player2);
-            if (dir2 === "l" || dir2 === "r") {
+            if (dir2 === "l") {
                 player.velX = 0;
+                player2.velX = -1;
+                player2.x += player2.velX;
                 player.jumping = false;
-            } else if (dir2 === "b") {
+            } else if (dir2 === "r") {
+                player.velX = 0;
+                player2.velX = 1;
+                player2.x += player2.velX;
+                player.jumping = false;
+            } 
+            else if (dir2 === "b") {
                 player.grounded = true;
                 player.jumping = false;
             } else if (dir2 === "t") {
