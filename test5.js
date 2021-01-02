@@ -1,4 +1,4 @@
-// Your web app's Firebase configuration
+// firebase algus
 const firebaseConfig = {
     apiKey: "AIzaSyAdy4kwFCOhFTp0D8VGkCDO5JXQmgvRWzs",
     authDomain: "suvaline-6de03.firebaseapp.com",
@@ -9,12 +9,15 @@ const firebaseConfig = {
     appId: "1:1003382351755:web:b55b3fba6a4b952d99b18e"
 };
 
-// Initialize Firebase
 
 firebase.initializeApp(firebaseConfig);
 let playersFire = firebase.database().ref("playersFire");
+//firebase lõpp
+
+//kohalik array
 let playersMap = new Map();
 
+//mängija constructor algus
 class players {
     constructor(name, posx, posy, pcolor) {
         this.name = name;
@@ -28,13 +31,11 @@ class players {
         this.velY = 0;
         this.jumping = false;
         this.grounded = false;
-        
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.restore();
     };
 };
+//mängija constructor lõpp
 
+//canvase andmed algus
 var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d"),
     width = 1400,
@@ -45,7 +46,9 @@ var canvas = document.getElementById("canvas"),
     boxes = [],
     playersarr = [],
     powerup = [];
+//canvase andmed lõpp
 
+//platvormide nimekiri algus
 boxes.push({
     x: 0,
     y: 690,
@@ -68,36 +71,67 @@ boxes.push({
     color: "#655643"
 });
 boxes.push({
-    x: 0,
-    y: 0,
-    width: 10,
-    height: 400,
+    x: 150,
+    y: 625,
+    width: 100,
+    height: 10,
     color: "#655643"
 });
+boxes.push({
+    x: 275,
+    y: 560,
+    width: 100,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 450,
+    y: 560,
+    width: 100,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 675,
+    y: 560,
+    width: 100,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 675,
+    y: 560,
+    width: 100,
+    height: 10,
+    color: "#655643"
+});
+//platvormide nimekiri lõpp
 
-function drawboxes() {
+//joonista piirded ja platvormid funktsiooni algus
+/* function drawboxes() {
     for (var i = 0; i < boxes.length; i++) {
-        //print boxes
         ctx.fillStyle = boxes[i].color;
         ctx.save();
         ctx.rect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
         ctx.fillRect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
-    
+
     };
-};
+}; */
+//joonista piirded ja platvormid funktsiooni lõpp
 
 function update() {
+    //prompt
     let prompt = document.getElementById("prompt");
     p5Prompt = new p5.Element(prompt);
     p5Prompt.position(450, 200);
     prompt.hidden = false;
     document.getElementById("promptInput").focus();
+    //hüpe
     if (keys[38] || keys[32] || keys[87]) {
-        // ülesse või hüpe
         if (!player.jumping && player.grounded) {
             player.jumping = true;
             player.grounded = false;
-            player.velY = -player.speed * 2.5; //hyppe kõrgus
+            player.velY = -player.speed * 2.5; //hüppe kõrgus
         }
     }
     //paremale
@@ -112,20 +146,23 @@ function update() {
             player.velX--;
         }
     }
-
+    //Mängija gravitatsioon ja hõõrdejõud
     player.velX *= friction;
     player.velY += gravity;
     ctx.clearRect(0, 0, 1400, 700);
     ctx.beginPath();
 
+    //Kontroll, kas mängija asub maas
     player.grounded = false;
+    //platvormide ja piirete joonistamine algus
     for (var i = 0; i < boxes.length; i++) {
-        //print boxes
         ctx.fillStyle = boxes[i].color;
         ctx.rect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
+        ctx.fill();
+    //platvormide ja piirete joonistamine lõpp
 
-        var dir = colCheck(player, boxes[i]);
-
+        //kokkupõrke kontroll kastidega algus
+        var dir = collisionCheck(player, boxes[i]);
         if (dir === "l" || dir === "r") {
             player.velX = 0;
             player.jumping = false;
@@ -136,51 +173,73 @@ function update() {
             player.velY *= -1;
         }
     }
+        //kokkupõrke kontroll kastidega lõpp
 
+    //teiste mängijatega kokkupõrke kontroll algus
     for (let [playerName, player2] of playersMap) {
         if (player2.name == player.name) {
             continue;
         } else {
-            var dir2 = colCheck(player, player2);
-            if (dir2 === "l" || dir2 === "r") {
+            var dir2 = collisionCheck(player, player2);
+            if (dir2 === "l") {
                 player.velX = 0;
+                player2.velX = -1;
+                player2.x += player2.velX;
                 player.jumping = false;
-            } else if (dir2 === "b") {
+            } else if (dir2 === "r") {
+                player.velX = 0;
+                player2.velX = 1;
+                player2.x += player2.velX;
+                player.jumping = false;
+            }
+            else if (dir2 === "b") {
                 player.grounded = true;
                 player.jumping = false;
             } else if (dir2 === "t") {
                 player.velY *= -1;
             }
-        };   
+        };
     };
+    //teiste mängijatega kokkupõrke kontroll lõpp
 
+    //mängija langemiskiiruse nullimine algus
     if (player.grounded) {
         player.velY = 0;
     }
+    //mängija langemiskiiruse nullimine lõpp
+
+    //mängija positsiooni uuendamine firebase andmebaasis algus
     playersFire.child(player.name).update({
         x: player.x += player.velX,
         y: player.y += player.velY
     });
-    ctx.fill();
+    //mängija positsiooni uuendamine firebase andmebaasis lõpp
+
+    //teise mängijate joonistamine algus
     for (let [playerName, player2] of playersMap) {
         if (player2.name == player.name) {
             continue;
         } else {
-            ctx.fillStyle = 'red';
+            ctx.fillStyle = player2.color;
+            ctx.font = "12px Arial";
+            ctx.fillText(player2.name, player2.x + 12.5, player2.y - 5);
+            ctx.textAlign = "center";
             ctx.fillRect(player2.x, player2.y, player2.width, player2.height);
         };
-        
-        
     };
+    //teise mängijate joonistamine lõpp
 
-    
-     // joonista enda mängija
-    ctx.fillStyle = player.color;
+
+    //enda mängija joonistamine algus
+    ctx.fillStyle = document.getElementById("coloring").value;
+    ctx.font = "12px Arial";
+    ctx.fillText(player.name, player.x + 12.5, player.y - 5);
+    ctx.textAlign = "center";
     ctx.fillRect(player.x, player.y, player.width, player.height);
-    //ctx.fillStyle = player1.color;
-    //ctx.fillRect(player1.x, player1.y, player1.width, player1.height);
+    //enda mängija joonistamine lõpp
 
-    //draw powerup stuff
+
+    //finish
     for (var j = 0; j < powerup.length; j++) {
         ctx.save();
         var cx = powerup[j].x + 0.5 * powerup[j].width, // x of shape center
@@ -202,7 +261,7 @@ function update() {
         ctx.restore();
 
         //powerup collision
-        if (colCheck(player, powerup[j]) !== null) {
+        if (colllisionCheck(player, powerup[j]) !== null) {
             //touched power up!
             if (powerup[j].effect === "gravity") {
                 gravity = 0.4; //decrease gravity
@@ -232,18 +291,14 @@ function update() {
     requestAnimationFrame(update);
 };
 
-function colCheck(shapeA, shapeB) {
-    // get the vectors to check against
+//kokkupõrke kontrolli funktsiooni algus
+function collisionCheck(shapeA, shapeB) {
     var vX = shapeA.x + shapeA.width / 2 - (shapeB.x + shapeB.width / 2),
         vY = shapeA.y + shapeA.height / 2 - (shapeB.y + shapeB.height / 2),
-        // add the half widths and half heights of the objects
         hWidths = shapeA.width / 2 + shapeB.width / 2,
         hHeights = shapeA.height / 2 + shapeB.height / 2,
         colDir = null;
-
-    // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
     if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {
-        // figures out on which side we are colliding (top, bottom, left, or right)
         var oX = hWidths - Math.abs(vX),
             oY = hHeights - Math.abs(vY);
         if (oX >= oY) {
@@ -266,26 +321,32 @@ function colCheck(shapeA, shapeB) {
     }
     return colDir;
 };
+//kokkupõrke kontrolli funktsiooni lõpp
 
+//uue mängija lisamine algus
 playersFire.on("child_added", (snapshot) => {
     if ((snapshot.key === player.nimi) || (snapshot.key === "Nimetu")) {
-        
+
         console.log(playersMap);
     } else {
-        playersMap.set(snapshot.key, new players(snapshot.key, snapshot.val().x, snapshot.val().y, snapshot.val().color));        
+        playersMap.set(snapshot.key, new players(snapshot.key, snapshot.val().x, snapshot.val().y, snapshot.val().color));
         console.log(playersMap);
         playersFire.child(snapshot.key).on("value", onChildValueChanged);
-    };  
-    
-});
+    };
 
+});
+//uue mängija lisamine lõpp
+
+//canvas dimensioonid algus
 canvas.width = width;
 canvas.height = height;
-drawboxes();
+//canvas dimensioonid lõpp
+
+//algne mängija - nimeta ja värvita
 player = new players("Nimetu", 100, 100, "blue");
 
 
-
+//nupuvajutuse kuulajad algus
 document.body.addEventListener("keydown", function (e) {
     keys[e.keyCode] = true;
 });
@@ -293,11 +354,15 @@ document.body.addEventListener("keydown", function (e) {
 document.body.addEventListener("keyup", function (e) {
     keys[e.keyCode] = false;
 });
+//nupuvajutuse kuulajad lõpp
 
+//alglaadimise kuulaja algus
 window.addEventListener("load", function () {
     update();
 });
+//alglaadimise kuulaja lõpp
 
+//nime ja värvi küsimine algus
 function onPromptButtonClick(shouldTakeInputValue) {
     if (!shouldTakeInputValue) player.name = "ei taha nime panna" + Math.floor(Math.random() * 100);
     else {
@@ -307,8 +372,7 @@ function onPromptButtonClick(shouldTakeInputValue) {
     playersFire.child(player.name).set({
         x: 540,
         y: 50,
-        color: player.color,
-        velY: 0
+        color: document.getElementById("coloring").value,
     });
     p5Prompt.hide();
 };
@@ -318,20 +382,24 @@ function onPromptInputKeyup(event) {
     if (event.key === "Escape") onPromptButtonClick(false);
 };
 
+//nime ja värvi küsimine lõpp
+
+window.onunload = playersFire.child(player.name).remove();
+
 function onChildValueChanged(snapshot) {
     if (!snapshot.val()) return;
     let player = playersMap.get(snapshot.key);
     player.x = snapshot.val().x;
     player.y = snapshot.val().y;
     player.color = snapshot.val().color;
-}; 
-
-window.addEventListener("beforeunload", function(e){
-    console.log("Hello hello hello");
-    playersFire.child(player.name).off();
+};
+//mängija kustutamine brauseri akna sulgemisel algus
+window.onbeforeunload = function () {
     playersFire.child(player.name).remove();
- }, false);
+};
+window.onunload = playersFire.child(player.name).remove();
 
- playersFire.on("child_removed", (snapshot) => {
+playersFire.on("child_removed", (snapshot) => {
     playersMap.delete(snapshot.key);
-  });
+});
+//mängija kustutamine brauseri akna sulgemisel lõpp
