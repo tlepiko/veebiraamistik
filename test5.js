@@ -496,7 +496,7 @@ function update() {
         ctx.fillStyle = boxes[i].color;
         ctx.rect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
         ctx.fill();
-    //platvormide ja piirete joonistamine lõpp
+        //platvormide ja piirete joonistamine lõpp
 
         //kokkupõrke kontroll kastidega algus
         var dir = collisionCheck(player, boxes[i]);
@@ -510,7 +510,7 @@ function update() {
             player.velY *= -1;
         }
     }
-        //kokkupõrke kontroll kastidega lõpp
+    //kokkupõrke kontroll kastidega lõpp
     for (var f = 0; f < boxes2.length; f++) {
         ctx.fillStyle = boxes2[f].color;
         ctx.rect(boxes2[f].x, boxes2[f].y, boxes2[f].width, boxes2[f].height);
@@ -666,7 +666,7 @@ function collisionCheck(shapeA, shapeB) {
 
 //uue mängija lisamine algus
 playersFire.on("child_added", (snapshot) => {
-    if ((snapshot.key === player.nimi) || (snapshot.key === "Nimetu")) {
+    if ((snapshot.key === player.nimi) || (snapshot.key === "Nimetu") || (!snapshot.key)) {
 
         console.log(playersMap);
     } else {
@@ -724,23 +724,36 @@ function onPromptInputKeyup(event) {
 };
 
 //nime ja värvi küsimine lõpp
+//mängija kustutamine brauseri akna sulgemisel algus
+window.onbeforeunload = function () {
+    playersFire.child(player.name).remove();
+    playersMap.delete(player.name);
 
-window.onunload = playersFire.child(player.name).remove();
+};
+window.onunload = function () {
+    playersFire.child(player.name).remove();
+
+};
 
 function onChildValueChanged(snapshot) {
     if (!snapshot.val()) return;
     let player = playersMap.get(snapshot.key);
-    player.x = snapshot.val().x;
-    player.y = snapshot.val().y;
-    player.color = snapshot.val().color;
+    if (typeof player === 'undefined') {
+        console.log("juba kustutatud");
+    } else {
+        player.x = snapshot.val().x;
+        player.y = snapshot.val().y;
+        player.color = snapshot.val().color;
+    }
+
 };
 //mängija kustutamine brauseri akna sulgemisel algus
-window.onbeforeunload = function () {
+/* window.onbeforeunload = function () {
     playersFire.child(player.name).remove();
 };
-window.onunload = playersFire.child(player.name).remove();
+window.onunload = playersFire.child(player.name).remove(); */
 
 playersFire.on("child_removed", (snapshot) => {
-    playersMap.delete(snapshot.key);
+    playersFire.child(player.name).remove();
 });
 //mängija kustutamine brauseri akna sulgemisel lõpp
