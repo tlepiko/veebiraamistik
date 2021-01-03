@@ -234,15 +234,113 @@ boxes.push({
 });
 boxes.push({
     x: 1300,
-    y: 300,
+    y: 90,
     width: 10,
-    height: 400,
+    height: 610,
     color: "#655643"
 });
+boxes.push({
+    x: 1250,
+    y: 100,
+    width: 10,
+    height: 155,
+    color: "#655643"
+});
+boxes.push({
+    x: 1260,
+    y: 240,
+    width: 10,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1260,
+    y: 140,
+    width: 10,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1290,
+    y: 190,
+    width: 10,
+    height: 10,
+    color: "#655643"
+});
+/* boxes.push({
+    x: 1090,
+    y: 265,
+    width: 30,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1060,
+    y: 245,
+    width: 30,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1030,
+    y: 225,
+    width: 30,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1000,
+    y: 205,
+    width: 30,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1030,
+    y: 165,
+    width: 30,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1060,
+    y: 155,
+    width: 30,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1090,
+    y: 145,
+    width: 30,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1120,
+    y: 135,
+    width: 100,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1210,
+    y: 145,
+    width: 10,
+    height: 100,
+    color: "#655643"
+}); */
 boxes.push({
     x: 700,
     y: 300,
     width: 30,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1050,
+    y: 90,
+    width: 210,
     height: 10,
     color: "#655643"
 });
@@ -270,24 +368,66 @@ boxes.push({
 boxes.push({
     x: 1135,
     y: 365,
-    width: 100,
+    width: 175,
     height: 10,
     color: "#655643"
 });
 boxes.push({
     x: 1100,
+    y: 325,
+    width: 10,
+    height: 90,
+    color: "#655643"
+});
+boxes.push({
+    x: 1100,
     y: 405,
+    width: 175,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1100,
+    y: 325,
+    width: 175,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1000,
+    y: 285,
+    width: 175,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1215,
+    y: 285,
+    width: 95,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1000,
+    y: 325,
     width: 100,
     height: 10,
     color: "#655643"
 });
-/* boxes2.push({
+boxes.push({
+    x: 1000,
+    y: 325,
+    width: 100,
+    height: 10,
+    color: "#655643"
+});
+boxes2.push({
     x: 950,
-    y: 100,
+    y: 90,
     width: 350,
     height: 350,
     color: "#655643"
-}); */
+});
 boxes2.push({
     x: 400,
     y: 90,
