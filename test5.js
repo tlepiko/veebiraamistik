@@ -44,6 +44,7 @@ var canvas = document.getElementById("canvas"),
     friction = 0.8,
     gravity = 0.4,
     boxes = [],
+    boxes2 = [],
     playersarr = [],
     powerup = [];
 //canvase andmed lõpp
@@ -52,6 +53,13 @@ var canvas = document.getElementById("canvas"),
 boxes.push({
     x: 0,
     y: 690,
+    width: 1400,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 0,
+    y: 0,
     width: 1400,
     height: 10,
     color: "#655643"
@@ -102,6 +110,195 @@ boxes.push({
     x: 675,
     y: 560,
     width: 100,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 800,
+    y: 500,
+    width: 50,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 700,
+    y: 440,
+    width: 50,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 900,
+    y: 440,
+    width: 50,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 500,
+    y: 440,
+    width: 10,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 600,
+    y: 440,
+    width: 10,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 400,
+    y: 440,
+    width: 10,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 300,
+    y: 400,
+    width: 10,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 200,
+    y: 340,
+    width: 10,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 125,
+    y: 10,
+    width: 10,
+    height: 400,
+    color: "#655643"
+});
+boxes.push({
+    x: 200,
+    y: 100,
+    width: 10,
+    height: 200,
+    color: "#655643"
+});
+boxes.push({
+    x: 200,
+    y: 90,
+    width: 200,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 135,
+    y: 300,
+    width: 20,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 180,
+    y: 240,
+    width: 20,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 135,
+    y: 180,
+    width: 20,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 180,
+    y: 120,
+    width: 20,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 450,
+    y: 90,
+    width: 100,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 600,
+    y: 90,
+    width: 400,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1300,
+    y: 300,
+    width: 10,
+    height: 400,
+    color: "#655643"
+});
+boxes.push({
+    x: 700,
+    y: 300,
+    width: 30,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 950,
+    y: 440,
+    width: 350,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1000,
+    y: 380,
+    width: 10,
+    height: 60,
+    color: "#655643"
+});
+boxes.push({
+    x: 1050,
+    y: 380,
+    width: 10,
+    height: 60,
+    color: "#655643"
+});
+boxes.push({
+    x: 1135,
+    y: 365,
+    width: 100,
+    height: 10,
+    color: "#655643"
+});
+boxes.push({
+    x: 1100,
+    y: 405,
+    width: 100,
+    height: 10,
+    color: "#655643"
+});
+/* boxes2.push({
+    x: 950,
+    y: 100,
+    width: 350,
+    height: 350,
+    color: "#655643"
+}); */
+boxes2.push({
+    x: 400,
+    y: 90,
+    width: 50,
+    height: 10,
+    color: "#655643"
+});
+boxes2.push({
+    x: 550,
+    y: 90,
+    width: 50,
     height: 10,
     color: "#655643"
 });
@@ -174,7 +371,11 @@ function update() {
         }
     }
         //kokkupõrke kontroll kastidega lõpp
-
+    for (var f = 0; f < boxes2.length; f++) {
+        ctx.fillStyle = boxes2[f].color;
+        ctx.rect(boxes2[f].x, boxes2[f].y, boxes2[f].width, boxes2[f].height);
+        ctx.fill();
+    };
     //teiste mängijatega kokkupõrke kontroll algus
     for (let [playerName, player2] of playersMap) {
         if (player2.name == player.name) {
