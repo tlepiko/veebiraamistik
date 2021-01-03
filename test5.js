@@ -730,6 +730,7 @@ window.onbeforeunload = function () {
     playersMap.delete(player.name);
 
 };
+//mängija kustutamine brauseri akna sulgemisel
 window.onunload = function () {
     playersFire.child(player.name).remove();
 
@@ -747,13 +748,9 @@ function onChildValueChanged(snapshot) {
     }
 
 };
-//mängija kustutamine brauseri akna sulgemisel algus
-/* window.onbeforeunload = function () {
-    playersFire.child(player.name).remove();
-};
-window.onunload = playersFire.child(player.name).remove(); */
+
+
 
 playersFire.on("child_removed", (snapshot) => {
     playersFire.child(player.name).remove();
 });
-//mängija kustutamine brauseri akna sulgemisel lõpp
