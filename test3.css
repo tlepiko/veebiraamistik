@@ -31,3 +31,15 @@ div{
     margin-left:2%;
     background: linear-gradient(#e6dc54, #50cdec); 
 }
+label{
+  color: #e90a0a;
+}
+button{
+  margin-left: 20%;
+}
+input{
+  color: #BF4D28;
+  font-family: sans-serif;
+  line-height:10px;
+  margin:2%;
+}

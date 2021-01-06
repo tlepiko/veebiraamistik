@@ -13,21 +13,25 @@
 </head>
 
 <body>
-    <div id="prompt" hidden>
-        <div>Sisesta nimi</div>
-        <input onkeyup="onPromptInputKeyup(event)" id="promptInput" type="text">
+    <div id="naming" hidden>
+        <form>
+            <label for="fname">Sisesta nimi:</label>
+            <input type="text" id="name" name="name"><br>
+        </form>
+        <div id="taken" hidden>
+            <p>Nimi on juba võetud!</p>
+        </div>
         <div>
             <label for="colors">Vali värv:</label>
-            <input type="color" id="coloring" name="colors"
-                   value="#e66465">
+            <input type="color" id="coloring" name="colors" value="#e66465" >
         </div>
         <div>
-            <button onclick="onPromptButtonClick(true)" id="promptButton">Ok</button>
+            <button onclick="onButtonClick(true)" id="okButton">Kinnita</button>
         </div>
     </div>
-        <canvas id="canvas">
-        </canvas>
-        <script src="test5.js"></script>
+    <canvas id="canvas">
+    </canvas>
+    <script src="test5.js"></script>
 </body>
 
 </html>

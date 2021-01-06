@@ -44,9 +44,7 @@ var canvas = document.getElementById("canvas"),
     friction = 0.8,
     gravity = 0.4,
     boxes = [],
-    boxes2 = [],
-    playersarr = [],
-    powerup = [];
+    boxes2 = [];
 //canvase andmed lõpp
 
 //platvormide nimekiri algus
@@ -56,413 +54,264 @@ boxes.push({
     width: 1400,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 0,
     y: 0,
     width: 1400,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 1390,
     y: 0,
     width: 10,
     height: 700,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 0,
     y: 0,
     width: 10,
     height: 700,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 150,
     y: 625,
     width: 100,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 275,
     y: 560,
     width: 100,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 450,
     y: 560,
     width: 100,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 675,
     y: 560,
     width: 100,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 675,
     y: 560,
     width: 100,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 800,
     y: 500,
     width: 50,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 700,
     y: 440,
     width: 50,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 900,
     y: 440,
     width: 50,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 500,
     y: 440,
     width: 10,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 600,
     y: 440,
     width: 10,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 400,
     y: 440,
     width: 10,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 300,
     y: 400,
     width: 10,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 200,
     y: 340,
     width: 10,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 125,
     y: 10,
     width: 10,
     height: 400,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 200,
     y: 100,
     width: 10,
     height: 200,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 200,
     y: 90,
     width: 200,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 135,
     y: 300,
     width: 20,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 180,
     y: 240,
     width: 20,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 135,
     y: 180,
     width: 20,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 180,
     y: 120,
     width: 20,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 450,
     y: 90,
     width: 100,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 600,
     y: 90,
     width: 400,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 1300,
     y: 90,
     width: 10,
     height: 610,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 1250,
     y: 100,
     width: 10,
     height: 155,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 1260,
     y: 240,
     width: 10,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 1260,
     y: 140,
     width: 10,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 1290,
     y: 190,
     width: 10,
     height: 10,
     color: "#655643"
-});
-/* boxes.push({
-    x: 1090,
-    y: 265,
-    width: 30,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1060,
-    y: 245,
-    width: 30,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1030,
-    y: 225,
-    width: 30,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1000,
-    y: 205,
-    width: 30,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1030,
-    y: 165,
-    width: 30,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1060,
-    y: 155,
-    width: 30,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1090,
-    y: 145,
-    width: 30,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1120,
-    y: 135,
-    width: 100,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1210,
-    y: 145,
-    width: 10,
-    height: 100,
-    color: "#655643"
-}); */
-boxes.push({
+},
+{
     x: 700,
     y: 300,
     width: 30,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 1050,
     y: 90,
     width: 210,
     height: 10,
     color: "#655643"
-});
-boxes.push({
+},
+{
     x: 950,
     y: 440,
     width: 350,
     height: 10,
     color: "#655643"
-});
-boxes.push({
-    x: 1000,
-    y: 380,
-    width: 10,
-    height: 60,
-    color: "#655643"
-});
-boxes.push({
-    x: 1050,
-    y: 380,
-    width: 10,
-    height: 60,
-    color: "#655643"
-});
-boxes.push({
-    x: 1135,
-    y: 365,
-    width: 175,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1100,
-    y: 325,
-    width: 10,
-    height: 90,
-    color: "#655643"
-});
-boxes.push({
-    x: 1100,
-    y: 405,
-    width: 175,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1100,
-    y: 325,
-    width: 175,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1000,
-    y: 285,
-    width: 175,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1215,
-    y: 285,
-    width: 95,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1000,
-    y: 325,
-    width: 100,
-    height: 10,
-    color: "#655643"
-});
-boxes.push({
-    x: 1000,
-    y: 325,
-    width: 100,
-    height: 10,
-    color: "#655643"
-});
-boxes2.push({
-    x: 950,
-    y: 90,
-    width: 350,
-    height: 350,
-    color: "#655643"
-});
+},
+);
 boxes2.push({
     x: 400,
     y: 90,
     width: 50,
     height: 10,
     color: "#655643"
-});
-boxes2.push({
+},
+{
     x: 550,
     y: 90,
     width: 50,
     height: 10,
     color: "#655643"
-});
+}
+);
 //platvormide nimekiri lõpp
 
-//joonista piirded ja platvormid funktsiooni algus
-/* function drawboxes() {
-    for (var i = 0; i < boxes.length; i++) {
-        ctx.fillStyle = boxes[i].color;
-        ctx.save();
-        ctx.rect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
-        ctx.fillRect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
-
-    };
-}; */
-//joonista piirded ja platvormid funktsiooni lõpp
-
 function update() {
-    //prompt
-    let prompt = document.getElementById("prompt");
-    p5Prompt = new p5.Element(prompt);
-    p5Prompt.position(450, 200);
-    prompt.hidden = false;
-    document.getElementById("promptInput").focus();
+    //vorm
+    let naming = document.getElementById("naming");
+    let taken = document.getElementById("taken");
+    namingPopup = new p5.Element(naming);
+    namingPopup.position(600, 250);
+    naming.hidden = false;
+    document.getElementById("name").focus();
     //hüpe
     if (keys[38] || keys[32] || keys[87]) {
         if (!player.jumping && player.grounded) {
@@ -579,56 +428,6 @@ function update() {
     ctx.fillRect(player.x, player.y, player.width, player.height);
     //enda mängija joonistamine lõpp
 
-
-    //finish
-    for (var j = 0; j < powerup.length; j++) {
-        ctx.save();
-        var cx = powerup[j].x + 0.5 * powerup[j].width, // x of shape center
-            cy = powerup[j].y + 0.5 * powerup[j].height; //y of shape center
-        ctx.translate(cx, cy); //translate to center of shape
-        ctx.rotate((Math.PI / 180) * 45); //rotate 25 degrees.
-        if (powerup[j].effect === "tele") {
-            ctx.rotate((Math.PI / 180) * powerup[j].rotate); //rotate 25 degrees.
-            powerup[j].rotate = (Math.PI / 180) * powerup[j].rotate;
-        }
-        ctx.translate(-cx, -cy); //translate center back to 0,0
-        ctx.fillStyle = powerup[j].color;
-        ctx.fillRect(
-            powerup[j].x,
-            powerup[j].y,
-            powerup[j].width,
-            powerup[j].height
-        );
-        ctx.restore();
-
-        //powerup collision
-        if (colllisionCheck(player, powerup[j]) !== null) {
-            //touched power up!
-            if (powerup[j].effect === "gravity") {
-                gravity = 0.4; //decrease gravity
-                player.speed = 4;
-                player.color = "white";
-            } else if (powerup[j].effect === "shrink") {
-                player.width = 10;
-                player.height = 10;
-                player.speed = 5;
-            } else if (powerup[j].effect === "tele") {
-                player.x = powerup[j].px;
-                player.y = powerup[j].py;
-            } else if (powerup[j].effect === "win") {
-                var r = confirm("You win! Play again?");
-                if (r == false) {
-                    player.x = 200;
-                    player.y = 200;
-                } else {
-                    window.location.href = window.location.href;
-                }
-            }
-            if (powerup[j].stay !== true) powerup[j].width = 0; //make power up go away
-        }
-    }
-    //powerup stuff
-
     requestAnimationFrame(update);
 };
 
@@ -667,7 +466,6 @@ function collisionCheck(shapeA, shapeB) {
 //uue mängija lisamine algus
 playersFire.on("child_added", (snapshot) => {
     if ((snapshot.key === player.nimi) || (snapshot.key === "Nimetu") || (!snapshot.key)) {
-
         console.log(playersMap);
     } else {
         playersMap.set(snapshot.key, new players(snapshot.key, snapshot.val().x, snapshot.val().y, snapshot.val().color));
@@ -704,29 +502,23 @@ window.addEventListener("load", function () {
 //alglaadimise kuulaja lõpp
 
 //nime ja värvi küsimine algus
-function onPromptButtonClick(shouldTakeInputValue) {
-    if (!shouldTakeInputValue) return;
-    let inputValue = document.getElementById("promptInput").value.replace(/[\.\#\$\[\]\/]/g, "");
-    console.log(inputValue);
-    if (playersMap.has(inputValue)) {
-        onPromptButtonClick();
+function onButtonClick(ok) {
+    if (!ok) return;
+    let potName = document.getElementById("name").value.replace(/[\.\#\$\[\]\/]/g, "");
+    if (playersMap.has(potName) || (potName === "")) {
+        onButtonClick();
+        taken.hidden = false;
     } else {
         
-        player.name = inputValue;
+        player.name = potName;
         playersFire.child(player.name).set({
             x: 540,
             y: 50,
             color: document.getElementById("coloring").value,
         });
-        p5Prompt.hide();
+        taken.hidden = true;
+        namingPopup.hide();
     }
-    
-
-};
-
-function onPromptInputKeyup(event) {
-    if (event.key === "Enter") onPromptButtonClick(true);
-    if (event.key === "Escape") onPromptButtonClick(false);
 };
 
 //nime ja värvi küsimine lõpp
@@ -745,7 +537,6 @@ function onChildValueChanged(snapshot) {
     if (!snapshot.val()) return;
     let player = playersMap.get(snapshot.key);
     if (typeof player === 'undefined') {
-        console.log("hey hey");
     } else {
         player.x = snapshot.val().x;
         player.y = snapshot.val().y;
@@ -753,16 +544,10 @@ function onChildValueChanged(snapshot) {
     }
 
 };
-//mängija kustutamine brauseri akna sulgemisel algus
-/* window.onbeforeunload = function () {
-    playersFire.child(player.name).remove();
-};
-window.onunload = playersFire.child(player.name).remove(); */
 
 playersFire.on("child_removed", (snapshot) => {
     playersFire.child(snapshot.key).remove();
     playersMap.delete(snapshot.key);
     console.log(playersMap);
-    console.log("lololol")
 });
 //mängija kustutamine brauseri akna sulgemisel lõpp
