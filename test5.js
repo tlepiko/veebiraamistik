@@ -705,17 +705,23 @@ window.addEventListener("load", function () {
 
 //nime ja värvi küsimine algus
 function onPromptButtonClick(shouldTakeInputValue) {
-    if (!shouldTakeInputValue) player.name = "ei taha nime panna" + Math.floor(Math.random() * 100);
-    else {
-        let inputValue = document.getElementById("promptInput").value.replace(/[\.\#\$\[\]\/]/g, "");
-        player.name = inputValue || "ei taha nime panna" + Math.floor(Math.random() * 100);
+    if (!shouldTakeInputValue) return;
+    let inputValue = document.getElementById("promptInput").value.replace(/[\.\#\$\[\]\/]/g, "");
+    console.log(inputValue);
+    if (playersMap.has(inputValue)) {
+        onPromptButtonClick();
+    } else {
+        
+        player.name = inputValue;
+        playersFire.child(player.name).set({
+            x: 540,
+            y: 50,
+            color: document.getElementById("coloring").value,
+        });
+        p5Prompt.hide();
     }
-    playersFire.child(player.name).set({
-        x: 540,
-        y: 50,
-        color: document.getElementById("coloring").value,
-    });
-    p5Prompt.hide();
+    
+
 };
 
 function onPromptInputKeyup(event) {
@@ -727,12 +733,11 @@ function onPromptInputKeyup(event) {
 //mängija kustutamine brauseri akna sulgemisel algus
 window.onbeforeunload = function () {
     playersFire.child(player.name).remove();
-    playersMap.delete(player.name);
+
 
 };
-//mängija kustutamine brauseri akna sulgemisel
 window.onunload = function () {
-    playersFire.child(player.name).remove();
+    playersMap.delete(player.name);
 
 };
 
@@ -740,7 +745,7 @@ function onChildValueChanged(snapshot) {
     if (!snapshot.val()) return;
     let player = playersMap.get(snapshot.key);
     if (typeof player === 'undefined') {
-        console.log("juba kustutatud");
+        console.log("hey hey");
     } else {
         player.x = snapshot.val().x;
         player.y = snapshot.val().y;
@@ -748,9 +753,16 @@ function onChildValueChanged(snapshot) {
     }
 
 };
-
-
+//mängija kustutamine brauseri akna sulgemisel algus
+/* window.onbeforeunload = function () {
+    playersFire.child(player.name).remove();
+};
+window.onunload = playersFire.child(player.name).remove(); */
 
 playersFire.on("child_removed", (snapshot) => {
-    playersFire.child(player.name).remove();
+    playersFire.child(snapshot.key).remove();
+    playersMap.delete(snapshot.key);
+    console.log(playersMap);
+    console.log("lololol")
 });
+//mängija kustutamine brauseri akna sulgemisel lõpp
