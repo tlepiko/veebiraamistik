@@ -14,7 +14,7 @@ firebase.initializeApp(firebaseConfig);
 let playersFire = firebase.database().ref("playersFire");
 //firebase lõpp
 
-//kohalik array
+//kohalik
 let playersMap = new Map();
 
 //mängija constructor algus
