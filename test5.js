@@ -9,7 +9,6 @@ const firebaseConfig = {
     appId: "1:1003382351755:web:b55b3fba6a4b952d99b18e"
 };
 
-
 firebase.initializeApp(firebaseConfig);
 let playersFire = firebase.database().ref("playersFire");
 //firebase lõpp
@@ -419,7 +418,6 @@ function update() {
     };
     //teise mängijate joonistamine lõpp
 
-
     //enda mängija joonistamine algus
     ctx.fillStyle = document.getElementById("coloring").value;
     ctx.font = "12px Arial";
@@ -427,7 +425,6 @@ function update() {
     ctx.textAlign = "center";
     ctx.fillRect(player.x, player.y, player.width, player.height);
     //enda mängija joonistamine lõpp
-
     requestAnimationFrame(update);
 };
 
@@ -466,13 +463,10 @@ function collisionCheck(shapeA, shapeB) {
 //uue mängija lisamine algus
 playersFire.on("child_added", (snapshot) => {
     if ((snapshot.key === player.nimi) || (snapshot.key === "Nimetu") || (!snapshot.key)) {
-        console.log(playersMap);
     } else {
         playersMap.set(snapshot.key, new players(snapshot.key, snapshot.val().x, snapshot.val().y, snapshot.val().color));
-        console.log(playersMap);
         playersFire.child(snapshot.key).on("value", onChildValueChanged);
     };
-
 });
 //uue mängija lisamine lõpp
 
@@ -526,7 +520,6 @@ function onButtonClick(ok) {
 window.onbeforeunload = function () {
     playersFire.child(player.name).remove();
 
-
 };
 window.onunload = function () {
     playersMap.delete(player.name);
@@ -542,7 +535,6 @@ function onChildValueChanged(snapshot) {
         player.y = snapshot.val().y;
         player.color = snapshot.val().color;
     }
-
 };
 
 playersFire.on("child_removed", (snapshot) => {
